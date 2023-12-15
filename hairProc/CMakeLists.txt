@@ -1,8 +1,15 @@
 cmake_minimum_required(VERSION 3.9 FATAL_ERROR)
 project(hairProc VERSION 0.1.0 LANGUAGES CXX)
 
-set(BUILD_USD_PLUGIN 1)
-set(BUILD_HOUDINI_PLUGIN 1)
+if (NOT DEFINED BUILD_USD_PLUGIN)
+    message("Building USD plugin")
+    set(BUILD_USD_PLUGIN 1)
+endif()
+    
+if (NOT DEFINED BUILD_HOUDINI_PLUGIN)
+    message("Building Houdini plugin")
+    set(BUILD_HOUDINI_PLUGIN 1)
+endif()
 
 # Set the C++ requirements
 set(CMAKE_CXX_STANDARD 17) # c++ 17 used for some convenience functions
