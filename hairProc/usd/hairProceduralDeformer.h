@@ -14,8 +14,6 @@
 #include "hairProceduralSchema.h"
 #include "api.h"
 
-#include "ocl/DeformerContext.h"
-
 PXR_NAMESPACE_OPEN_SCOPE
 
 TF_DECLARE_REF_PTRS(HairProcHairProceduralDeformer);
@@ -27,7 +25,6 @@ public:
                                    const SdfPath& primPath);
 
     VtVec3fArray Deform(const HdSampledDataSource::Time& shutterOffset);
-    bool InitOCL();
 
 private:
     VtArray<HdContainerDataSourceHandle> _targetContainers;
@@ -37,9 +34,7 @@ private:
     std::vector<int> _uniquePrims;
     std::vector<int> _sortedCaptPrims;
 
-    VtVec3fArray _DeformOCL(const HdSampledDataSource::Time& shutterOffset);
     VtVec3fArray _Deform(const HdSampledDataSource::Time& shutterOffset) {return VtVec3fArray(); }
-    VtMatrix3fArray _CalcTargetFrames(const HdSampledDataSource::Time& shutterOffset, const bool invert, VtVec3fArray& pts, GfMatrix4f& xform);
 };
 
 using HairProcHairProceduralDeformerSharedPtr = std::shared_ptr<class HairProcHairProceduralDeformer>;

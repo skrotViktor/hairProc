@@ -11,12 +11,12 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 # Target names
 set(USDPLUGIN_NAME hairProc) # Need to match schema library name
 set(PYPACKAGE_NAME vik) # The package name used for python. "from vik import HairProc"
-set(OCLMODULE_NAME ocl) # The name of the opencl library
 
 # Install directory
-set(USD_INSTALL_ROOT /opt/USD) # The path to our USD istall directory
+set(USD_INSTALL_ROOT /opt/USD)
+set(HOUDINI_INSTALL_ROOT /Applications/Houdini/current/Frameworks/Houdini.framework/Resources)
 
-set(CMAKE_INSTALL_PREFIX "/opt/USD_resources" CACHE PATH "..." FORCE) # Where this project will be installed
+set(CMAKE_INSTALL_PREFIX "/opt/USD_resources" CACHE PATH "..." FORCE)
 
 # Some RPATH stuff. Don't think this is how you do it....
 set(CMAKE_INSTALL_RPATH "${CMAKE_INSTALL_PREFIX}/lib")
@@ -30,4 +30,3 @@ include(cmake/createTarget.cmake)
 
 # The subdirectories defines our actual library targets
 add_subdirectory(usd)
-add_subdirectory(ocl)

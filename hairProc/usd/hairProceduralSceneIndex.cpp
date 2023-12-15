@@ -9,10 +9,7 @@
 #include "pxr/base/trace/reporter.h"
 
 #include "pxr/usdImaging/usdImaging/stageSceneIndex.h"
-// #include "pxr/imaging/hd/renderIndex.h"
-
 #include "pxr/usdImaging/usdImaging/adapterRegistry.h"
-// #include "pxr/usdImaging/usdImaging/adapterManager.h"
 
 #include <memory>
 #include <iostream>
@@ -62,10 +59,7 @@ void dumpSceneIndexTree(HdSceneIndexBaseRefPtr sceneIndex, int depth = 0)
 }
 
 HairProcHairProceduralSceneIndex::HairProcHairProceduralSceneIndex(const HdSceneIndexBaseRefPtr& inputSceneIndex) 
-        : HdSingleInputFilteringSceneIndexBase(inputSceneIndex) {
-
-    // dumpSceneIndexTree(inputSceneIndex);
-}
+        : HdSingleInputFilteringSceneIndexBase(inputSceneIndex) {}
 
 
 HdSceneIndexPrim HairProcHairProceduralSceneIndex::GetPrim(const SdfPath& primPath) const {
@@ -106,7 +100,6 @@ HairProcHairProceduralSceneIndex::_PrimsAdded(
             HdPrimvarsSchema primvarSchema = HdPrimvarsSchema::GetFromParent(prim.dataSource);
             HairProcHairProceduralSchema hairProcSchema = HairProcHairProceduralSchema::GetFromParent(prim.dataSource);
 
-            // std::cout<<"SCHEMA: " << hairProcSchema.IsDefined() << std::endl;
             if (curveSchema && primvarSchema && hairProcSchema) {
                 std::cout<<"FOUND PRIM: " << entry.primPath << std::endl;
                 _init_deformer(entry.primPath, hairProcSchema, curveSchema, primvarSchema);
@@ -192,9 +185,6 @@ void HairProcHairProceduralSceneIndex::_init_deformer(
     TraceCollector::GetInstance().SetEnabled(true);
 
     HairProcHairProceduralDeformerSharedPtr deformer = std::make_shared<HairProcHairProceduralDeformer>(targetDs, sourceDs, primPath);
-
-    TraceCollector::GetInstance().SetEnabled(false);
-    TraceReporter::GetGlobalReporter()->ReportTimes(std::cout);
 
     _deformerMap[primPath] = deformer;
     for (SdfPath& path : targets) {
