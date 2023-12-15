@@ -12,11 +12,15 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(USDPLUGIN_NAME hairProc) # Need to match schema library name
 set(PYPACKAGE_NAME vik) # The package name used for python. "from vik import HairProc"
 
-# Install directory
-set(USD_INSTALL_ROOT /opt/USD)
-set(HOUDINI_INSTALL_ROOT /Applications/Houdini/current/Frameworks/Houdini.framework/Resources)
+if (${BUILD_USD_PLUGIN} AND NOT DEFINED USD_INSTALL_ROOT)
+    message(FATAL_ERROR "Missing USD_INSTALL_ROOT")
+    return()
+endif()
 
-set(CMAKE_INSTALL_PREFIX "/opt/USD_resources" CACHE PATH "..." FORCE)
+if (${BUILD_HOUDINI_PLUGIN} AND NOT DEFINED HOUDINI_INSTALL_ROOT)
+    message(FATAL_ERROR "Missing HOUDINI_INSTALL_ROOT")
+    return()
+endif()
 
 # Some RPATH stuff. Don't think this is how you do it....
 set(CMAKE_INSTALL_RPATH "${CMAKE_INSTALL_PREFIX}/lib")
