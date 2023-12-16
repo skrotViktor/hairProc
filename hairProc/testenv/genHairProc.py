@@ -254,13 +254,13 @@ def do_stuffs(stage):
     plane1 = build_plane(stage, "/plane1",  w=5, h=5, pos=(10,0,0))
     plane2 = build_plane(stage, "/plane2",  w=5, h=5, pos=(20,0,0))
     
-    build_hair(stage, tube, count=1000, path="/curves1")
-    build_hair(stage, plane1, count=1000, path="/curves2")
-    build_hair(stage, plane2, count=1000, path="/curves3")
+    build_hair(stage, tube, count=10, path="/curves1")
+    build_hair(stage, plane1, count=10, path="/curves2")
+    build_hair(stage, plane2, count=10, path="/curves3")
 
-    twist(stage, tube, nframes=200, speed=0.01)
-    transform_pts(stage, plane1, nframes=200)
-    transform(stage, plane2, nframes=200)
+    twist(stage, tube, nframes=10, speed=0.01)
+    transform_pts(stage, plane1, nframes=10)
+    transform(stage, plane2, nframes=10)
 
 
 if __name__ == "__main__":
